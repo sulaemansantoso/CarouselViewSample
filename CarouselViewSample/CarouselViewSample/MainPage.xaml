@@ -1,14 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:local="clr-namespace:CarouselViewSample"
              x:Class="CarouselViewSample.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <controls:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10"   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <controls:CarouselViewControl.ItemsSource>
+                <x:Array Type="{x:Type local:Person}">
+                    <local:Person Name="Steve" Age="21" Location="USA" />
+                    <local:Person Name="John" Age="37" Location="USA" />
+                    <local:Person Name="Tom" Age="42" Location="UK" />
+                    <local:Person Name="Lucas" Age="29" Location="Germany" />
+                    <local:Person Name="Tariq" Age="39" Location="UK" />
+                    <local:Person Name="Jane" Age="30" Location="USA" />
+                </x:Array>
+            </controls:CarouselViewControl.ItemsSource>
+            <controls:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Text="{Binding Age}" />
+                            <Label Grid.Column="2" Text="{Binding Location}" HorizontalTextAlignment="End" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </controls:CarouselViewControl.ItemTemplate>
+        </controls:CarouselViewControl>
     </StackLayout>
 
 </ContentPage>
